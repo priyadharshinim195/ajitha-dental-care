@@ -1,5 +1,5 @@
 """Role model:
-- admin:  Django superuser (full control, including accounts via /django-admin/)
+- admin:  Django superuser (full control, including accounts via /admin/)
 - editor: member of the 'Editors' group (create, edit, publish, delete content)
 - viewer: member of the 'Viewers' group (read-only dashboard access)
 Users with no role cannot use the admin API.

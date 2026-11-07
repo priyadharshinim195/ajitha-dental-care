@@ -4,7 +4,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("django-admin/", admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("django-admin/", include((admin.site.get_urls(), "admin"), namespace="legacy_admin")),
     path("api/auth/", include("apps.accounts.urls")),
     path("api/public/", include("apps.website_settings.public_urls")),
     path("api/public/", include("apps.hero_images.public_urls")),
