@@ -105,6 +105,16 @@ The dev server proxies `/api` and `/media` to `http://127.0.0.1:8000`. To point 
 4. Proxy `/api/` and `/media/` to gunicorn. Serve `/media/` from `MEDIA_ROOT` for speed, or proxy it.
 5. Set `DJANGO_DEBUG=0`, `DJANGO_ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS` (if the frontend is on another origin), and `SECURE_COOKIES=1` (HTTPS only).
 
+### Render backend service
+
+Configure the Render web service with:
+
+- **Root Directory:** `backend`
+- **Build Command:** `bash render-build.sh`
+- **Start Command:** `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT`
+
+The build script installs `backend/requirements.txt` and runs `collectstatic` from the backend directory, creating `backend/staticfiles/staticfiles.json` and the hashed Django admin assets before deployment. Keep the existing environment variables, database, and service settings.
+
 ## 5. Security model
 
 - Access tokens (15 minutes) are kept in memory only. They are never written to local or session storage.
